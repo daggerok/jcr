@@ -20,8 +20,8 @@ public class ContentRepositoryServiceBean implements ContentRepositoryService {
     private ContentRepository repository;
 
     @Override
-    @GET // jcr/api/files
-    public String saveAndReadStaticContent() {
+    @GET // goto: /jcr/api/files
+    public String test() {
         String location = "/path/to/location/";
         String filename = "some.filename";
 
@@ -37,7 +37,7 @@ public class ContentRepositoryServiceBean implements ContentRepositoryService {
         // read:
         byte[] result = repository.read(filename);
         // delete:
-        //contentRepository.delete(filename);
+        //boolean success = contentRepository.delete(filename);
         return new String(result);
     }
 }
