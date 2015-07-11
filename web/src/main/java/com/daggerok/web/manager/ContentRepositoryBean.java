@@ -19,12 +19,12 @@ import static java.util.logging.Level.*;
 public class ContentRepositoryBean implements ContentRepository {
     private static final Logger logger = Logger.getLogger(ContentRepository.class.getName());
 
-    @Resource(name = "java:/jca/app/fs")
+    @Resource(name = "java:/jca/app/repository")
     private Repository repository = null;
 
     private Credentials credentials = null;
 
-    private String location = "/path/to/repository";
+    private String location = "/virtual/path/to/repository";
 
     private Session session = null;
 
@@ -66,7 +66,7 @@ public class ContentRepositoryBean implements ContentRepository {
 
     @Override
     public boolean contains(String filename) {
-        String identifier = getIdentifier(location, filename);
+        String identifier = getIdentifier(filename);
 
         logger.log(INFO, "Check existence of identifier {0}.", identifier);
         try {
@@ -81,14 +81,14 @@ public class ContentRepositoryBean implements ContentRepository {
 
     @Override
     public byte[] read(String filename) {
-        String identifier = getIdentifier(location, filename);
+        String identifier = getIdentifier(filename);
 
         logger.log(INFO, "Read file identifier {0}.", identifier);
         try {
             session = login();
 
             if (!contains(session, identifier)) {
-                throw new RuntimeException(String.format("File %s wasn't found in %s.", filename, location));
+                throw new RuntimeException(String.format("File %s wasn't found.", filename));
             }
 
             try (InputStream inputStream = session.getRootNode().getNode(identifier).getProperty(binaryType)
@@ -105,7 +105,7 @@ public class ContentRepositoryBean implements ContentRepository {
 
     @Override
     public boolean delete(String filename) {
-        String identifier = getIdentifier(location, filename);
+        String identifier = getIdentifier(filename);
 
         logger.log(INFO, "Delete file identifier {0}.", identifier);
         try {
@@ -130,16 +130,16 @@ public class ContentRepositoryBean implements ContentRepository {
         return repository.login(credentials, workspace);
     }
 
-    private static String getIdentifier(String filename) {
+    private String getIdentifier(String filename) {
         // replace not valid characters for node relPath:
         return Paths.get(location, filename).toString().replaceAll("[^a-zA-Z0-9_\\-]", "_");
     }
 
-    private static boolean contains(Session session, String identifier) throws RepositoryException {
+    private boolean contains(Session session, String identifier) throws RepositoryException {
         return session.getRootNode().hasNode(identifier);
     }
 
-    private static void logout(Session session) {
+    private void logout(Session session) {
         if (null != session && session.isLive()) {
             session.logout();
         }
