@@ -34,7 +34,7 @@ public class ContentRepositoryBean implements ContentRepository {
 
     private String workspace = "jcr";
 
-    private static final String binaryType = "jcr:data";
+    private String binaryType = "jcr:data";
 
     @PostConstruct
     private void postConstruct() {
