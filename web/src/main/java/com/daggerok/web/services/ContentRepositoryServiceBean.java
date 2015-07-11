@@ -28,14 +28,16 @@ public class ContentRepositoryServiceBean implements ContentRepositoryService {
         try {
             byte[] data = ByteStreams.toByteArray(new FileInputStream(Paths.get(location, filename).toString()));
             // save:
-            repository.save(location, filename, data);
+            repository.save(filename, data);
         } catch (IOException e) {
             logger.severe(e.getMessage());
         }
-        // exists: contentRepository.exists(location, filename);
-        // delete: contentRepository.delete(location, filename);
+        // exists:
+        //boolean exists = contentRepository.exists(filename);
         // read:
-        byte[] result = repository.read(location, filename);
+        byte[] result = repository.read(filename);
+        // delete:
+        //contentRepository.delete(filename);
         return new String(result);
     }
 }
