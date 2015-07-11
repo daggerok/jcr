@@ -50,32 +50,33 @@ public class ContentRepositoryBean implements ContentRepository {
             session = login();
 
             Node folder = session.getRootNode();
-            Node file = folder.hasNode(identifier) ? folder.getNode(identifier) : folder.addNode(identifier);
+            Node file = contains(identifier) ? folder.getNode(identifier) : folder.addNode(identifier);
             Binary binary = session.getValueFactory().createBinary(new ByteArrayInputStream(data));
 
             file.setProperty(binaryType, binary);
-            session.save();
+            commit();
             binary.dispose();
         } catch (RepositoryException exception) {
             logger.log(SEVERE, "Could not save file {0}.", filename);
             throw new RuntimeException("Could not save file.", exception);
         } finally {
-            logout(session);
+            logout();
         }
     }
 
     @Override
-    public boolean contains(String filename) {
+    public boolean exists(String filename) {
         String identifier = getIdentifier(filename);
 
-        logger.log(INFO, "Check existence of identifier {0}.", identifier);
+        logger.log(INFO, "Check existence for file identifier {0}.", identifier);
         try {
-            return contains(session = login(), identifier);
+            session = login();
+            return contains(identifier);
         } catch (RepositoryException exception) {
             logger.log(SEVERE, "Could not check file {0}.", filename);
             throw new RuntimeException("Could not check file.", exception);
         } finally {
-            logout(session);
+            logout();
         }
     }
 
@@ -87,7 +88,7 @@ public class ContentRepositoryBean implements ContentRepository {
         try {
             session = login();
 
-            if (!contains(session, identifier)) {
+            if (!contains(identifier)) {
                 throw new RuntimeException(String.format("File %s wasn't found.", filename));
             }
 
@@ -99,7 +100,7 @@ public class ContentRepositoryBean implements ContentRepository {
             logger.log(SEVERE, "Could not read file {0}.", filename);
             throw new RuntimeException("Could not read file.", exception);
         } finally {
-            logout(session);
+            logout();
         }
     }
 
@@ -111,19 +112,19 @@ public class ContentRepositoryBean implements ContentRepository {
         try {
             session = login();
 
-            if (!contains(session, identifier)) {
-                return false;
+            if (!contains(identifier)) {
+                return false; // file wasn't found.
             }
 
             session.getRootNode().getNode(identifier).remove();
-            session.save();
+            commit();
         } catch (RepositoryException exception) {
             logger.log(SEVERE, "Could not read file {0}.", filename);
             throw new RuntimeException("Could not read file.", exception);
         } finally {
-            logout(session);
+            logout();
         }
-        return true;
+        return true; // file successfully removed.
     }
 
     private Session login() throws RepositoryException {
@@ -135,11 +136,13 @@ public class ContentRepositoryBean implements ContentRepository {
         return Paths.get(location, filename).toString().replaceAll("[^a-zA-Z0-9_\\-]", "_");
     }
 
-    private boolean contains(Session session, String identifier) throws RepositoryException {
+    private boolean contains(String identifier) throws RepositoryException {
         return session.getRootNode().hasNode(identifier);
     }
 
-    private void logout(Session session) {
+    private void commit() { session.save(); }
+
+    private void logout() {
         if (null != session && session.isLive()) {
             session.logout();
         }
