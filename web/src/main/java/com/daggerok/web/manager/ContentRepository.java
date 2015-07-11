@@ -1,7 +1,7 @@
 package com.daggerok.web.manager;
 
 public interface ContentRepository {
-    void save(String filename, byte[] data);
+    void saveOrUpdate(String filename, byte[] data);
 
     boolean contains(String filename);
 
