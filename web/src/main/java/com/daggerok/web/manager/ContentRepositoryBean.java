@@ -24,6 +24,8 @@ public class ContentRepositoryBean implements ContentRepository {
 
     private Credentials credentials = null;
 
+    private String location = "/path/to/repository";
+
     private Session session = null;
 
     private String adminId = "jcr";
@@ -40,8 +42,8 @@ public class ContentRepositoryBean implements ContentRepository {
     }
 
     @Override
-    public void save(String location, String filename, byte[] data) {
-        String identifier = getIdentifier(location, filename);
+    public void save(String filename, byte[] data) {
+        String identifier = getIdentifier(filename);
 
         logger.log(INFO, "Save file identifier {0} ({1} bytes)", new Object[] { identifier, data.length });
         try {
@@ -63,7 +65,7 @@ public class ContentRepositoryBean implements ContentRepository {
     }
 
     @Override
-    public boolean contains(String location, String filename) {
+    public boolean contains(String filename) {
         String identifier = getIdentifier(location, filename);
 
         logger.log(INFO, "Check existence of identifier {0}.", identifier);
@@ -78,7 +80,7 @@ public class ContentRepositoryBean implements ContentRepository {
     }
 
     @Override
-    public byte[] read(String location, String filename) {
+    public byte[] read(String filename) {
         String identifier = getIdentifier(location, filename);
 
         logger.log(INFO, "Read file identifier {0}.", identifier);
@@ -102,7 +104,7 @@ public class ContentRepositoryBean implements ContentRepository {
     }
 
     @Override
-    public boolean delete(String location, String filename) {
+    public boolean delete(String filename) {
         String identifier = getIdentifier(location, filename);
 
         logger.log(INFO, "Delete file identifier {0}.", identifier);
@@ -128,7 +130,7 @@ public class ContentRepositoryBean implements ContentRepository {
         return repository.login(credentials, workspace);
     }
 
-    private static String getIdentifier(String location, String filename) {
+    private static String getIdentifier(String filename) {
         // replace not valid characters for node relPath:
         return Paths.get(location, filename).toString().replaceAll("[^a-zA-Z0-9_\\-]", "_");
     }
