@@ -12,8 +12,7 @@ import java.io.*;
 import java.nio.file.Paths;
 import java.util.logging.Logger;
 
-import static java.util.logging.Level.INFO;
-import static java.util.logging.Level.SEVERE;
+import static java.util.logging.Level.*;
 
 @Singleton
 @Lock(LockType.READ)
@@ -27,11 +26,11 @@ public class ContentRepositoryBean implements ContentRepository {
 
     private Session session = null;
 
-    private String adminId = "cccm";
+    private String adminId = "jcr";
 
-    private char[] pass = "".toCharArray();
+    private char[] pass = "jcr".toCharArray();
 
-    private String workspace = "cccm";
+    private String workspace = "jcr";
 
     private static final String binaryType = "jcr:data";
 
