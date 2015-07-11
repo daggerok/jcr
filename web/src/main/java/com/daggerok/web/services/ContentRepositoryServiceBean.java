@@ -20,7 +20,7 @@ public class ContentRepositoryServiceBean implements ContentRepositoryService {
     private ContentRepository repository;
 
     @Override
-    @GET // GET /jcr/api/files
+    @GET // ${root}/jcr/api/files
     public String test() {
         String location = "/path/to/location/";
         String filename = "some.filename";
