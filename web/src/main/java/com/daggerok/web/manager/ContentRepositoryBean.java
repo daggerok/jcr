@@ -42,7 +42,7 @@ public class ContentRepositoryBean implements ContentRepository {
     }
 
     @Override
-    public void save(String filename, byte[] data) {
+    public void saveOrUpdate(String filename, byte[] data) {
         String identifier = getIdentifier(filename);
 
         logger.log(INFO, "Save file identifier {0} ({1} bytes)", new Object[] { identifier, data.length });
