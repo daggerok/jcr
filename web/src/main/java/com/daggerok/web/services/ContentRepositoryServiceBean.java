@@ -28,7 +28,7 @@ public class ContentRepositoryServiceBean implements ContentRepositoryService {
         try {
             byte[] data = ByteStreams.toByteArray(new FileInputStream(Paths.get(location, filename).toString()));
             // save:
-            repository.save(filename, data);
+            repository.saveOrUpdate(filename, data);
         } catch (IOException e) {
             logger.severe(e.getMessage());
         }
