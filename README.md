@@ -23,7 +23,7 @@
     </module>
     ```
     
-  4. Download jcr-2.0.jar: http://jackrabbit.apache.org/jcr/downloads.html#v2.10 into $JBOSS_HOME/modules/system/layers/base/javax/jcr/main/
+  4. Download jcr-2.0.jar: http://mvnrepository.com/artifact/javax.jcr/jcr/2.0 into $JBOSS_HOME/modules/system/layers/base/javax/jcr/main/
   5. Update JBOSS standalone configuration: $JBOSS_HOME/standalone/configuration/standalone.xml with next content:
 
     ```xml:
@@ -86,7 +86,7 @@
     ```
     and save it as ConfigFile.
     
-  7. Download jackrabbit-jca-2.10.1.rar from apache jackrabbit homesite into $JBOSS_HOME/standalone/deployments/
+  7. Download jackrabbit-jca-2.10.1.rar: http://jackrabbit.apache.org/jcr/downloads.html#v2.10 into $JBOSS_HOME/standalone/deployments/
   8. Start JBOSS
 
 ###links
@@ -96,3 +96,5 @@ http://jackrabbit.apache.org/jcr/articles.html
 http://wiki.apache.org/jackrabbit/FrontPage
 
 https://developer.jboss.org/wiki/JackrabbitDeploymentInAS6AndAS7
+
+https://jcp.org/aboutJava/communityprocess/final/jsr283/index.html
