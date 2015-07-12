@@ -243,7 +243,7 @@
                     </archive>
                     <transaction-support>XATransaction</transaction-support>
                     <connection-definitions>
-                        <connection-definition class-name="org.apache.jackrabbit.jca.JCAManagedConnectionFactory" jndi-name="java:/jca/app/fs" enabled="true" pool-name="RabbitAdapter">
+                        <connection-definition class-name="org.apache.jackrabbit.jca.JCAManagedConnectionFactory" jndi-name="java:/jca/app/repository" enabled="true" pool-name="RabbitAdapter">
                             <config-property name="ConfigFile">
                                 /path/to/repository.xml
                             </config-property>

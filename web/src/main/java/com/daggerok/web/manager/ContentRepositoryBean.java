@@ -140,11 +140,7 @@ public class ContentRepositoryBean implements ContentRepository {
         return session.getRootNode().hasNode(identifier);
     }
 
-    private void commit() { session.save(); }
+    private void commit() throws RepositoryException { session.save(); }
 
-    private void logout() {
-        if (null != session && session.isLive()) {
-            session.logout();
-        }
-    }
+    private void logout() { session.logout(); }
 }
