@@ -90,12 +90,12 @@
   8. Start JBOSS
 
 ###links
-http://jackrabbit.apache.org/jcr/index.html
+http://jackrabbit.apache.org/jcr/downloads.html#v2.10
 
 http://jackrabbit.apache.org/jcr/articles.html
 
 http://wiki.apache.org/jackrabbit/FrontPage
 
-http://www.jboss.org/
+http://www.jboss.org/products/eap/download/
 
 https://developer.jboss.org/wiki/JackrabbitDeploymentInAS6AndAS7
