@@ -6,7 +6,7 @@
 
 ###configuration
 
-  1. Download JBOSS EAP 6.4
+  1. Download JBOSS EAP 6.4: http://www.jboss.org/products/eap/download/
   2. Create module folder for module JCR API: $JBOSS_HOME/modules/system/layers/base/javax/jcr/main/
   3. Add module configuration $JBOSS_HOME/modules/system/layers/base/javax/jcr/main/module.xml with next content:
 
@@ -23,7 +23,7 @@
     </module>
     ```
     
-  4. Download jcr-2.0.jar into $JBOSS_HOME/modules/system/layers/base/javax/jcr/main/
+  4. Download jcr-2.0.jar: http://jackrabbit.apache.org/jcr/downloads.html#v2.10 into $JBOSS_HOME/modules/system/layers/base/javax/jcr/main/
   5. Update JBOSS standalone configuration: $JBOSS_HOME/standalone/configuration/standalone.xml with next content:
 
     ```xml:
@@ -90,12 +90,9 @@
   8. Start JBOSS
 
 ###links
-http://jackrabbit.apache.org/jcr/downloads.html#v2.10
 
 http://jackrabbit.apache.org/jcr/articles.html
 
 http://wiki.apache.org/jackrabbit/FrontPage
-
-http://www.jboss.org/products/eap/download/
 
 https://developer.jboss.org/wiki/JackrabbitDeploymentInAS6AndAS7
