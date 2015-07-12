@@ -34,7 +34,7 @@ public class ContentRepositoryBean implements ContentRepository {
 
     private String workspace = "jcr";
 
-    private String binaryType = "jcr:data";
+    private String metadata = "jcr:data";
 
     @PostConstruct
     private void postConstruct() {
@@ -53,7 +53,7 @@ public class ContentRepositoryBean implements ContentRepository {
             Node file = contains(identifier) ? folder.getNode(identifier) : folder.addNode(identifier);
             Binary binary = session.getValueFactory().createBinary(new ByteArrayInputStream(data));
 
-            file.setProperty(binaryType, binary);
+            file.setProperty(metadata, binary);
             commit();
             binary.dispose();
         } catch (RepositoryException exception) {
@@ -92,7 +92,7 @@ public class ContentRepositoryBean implements ContentRepository {
                 throw new RuntimeException(String.format("File %s wasn't found.", filename));
             }
 
-            try (InputStream inputStream = session.getRootNode().getNode(identifier).getProperty(binaryType)
+            try (InputStream inputStream = session.getRootNode().getNode(identifier).getProperty(metadata)
                     .getBinary().getStream()) {
                 return ByteStreams.toByteArray(inputStream);
             }
