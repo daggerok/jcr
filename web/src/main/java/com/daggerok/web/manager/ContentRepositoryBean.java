@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 import static java.util.logging.Level.*;
 
-@Singleton
+@Singleton // or maybe session scoped?
 @Lock(LockType.READ)
 public class ContentRepositoryBean implements ContentRepository {
     private static final Logger logger = Logger.getLogger(ContentRepository.class.getName());
