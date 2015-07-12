@@ -34,12 +34,12 @@
     <!--
         security configuration
     -->
-    <Security appName="cccm">
+    <Security appName="jcr">
         <!--
             security manager:
             class: FQN of class implementing the JackrabbitSecurityManager interface
         -->
-        <SecurityManager class="org.apache.jackrabbit.core.security.simple.SimpleSecurityManager" workspaceName="cccm">
+        <SecurityManager class="org.apache.jackrabbit.core.security.simple.SimpleSecurityManager" workspaceName="jcr">
             <!--
             workspace access:
             class: FQN of class implementing the WorkspaceAccessManager interface
@@ -63,14 +63,14 @@
            <!--
               administrator user id (default value if param is missing is 'admin')
             -->
-           <param name="adminId" value="cccm"/>
+           <param name="adminId" value="jcr"/>
         </LoginModule>
     </Security>
 
     <!--
         location of workspaces root directory and name of default workspace
     -->
-    <Workspaces rootPath="${rep.home}/ws" defaultWorkspace="cccm"/>
+    <Workspaces rootPath="${rep.home}/ws" defaultWorkspace="jcr"/>
 	
     <!--
         workspace configuration template:
