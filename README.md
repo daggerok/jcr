@@ -79,7 +79,7 @@ JBOSS configuration
     ```
     Important things here is: HomeDir and ConfigFile properties. Make sure that HomeDir is exists and JBOSS user has all needed rights. We will use shared Repository resource through JNDI name: java:/jca/app/repository
     
-  6. Add repository configuration with next content:
+  6. Add repository configuration
     
     ```xml:
     <!-- see jcr/web/src/etc/repository.xml -->
