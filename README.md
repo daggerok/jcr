@@ -91,7 +91,11 @@
 
 ###links
 http://jackrabbit.apache.org/jcr/index.html
+
 http://jackrabbit.apache.org/jcr/articles.html
+
 http://wiki.apache.org/jackrabbit/FrontPage
+
 http://www.jboss.org/
+
 https://developer.jboss.org/wiki/JackrabbitDeploymentInAS6AndAS7
