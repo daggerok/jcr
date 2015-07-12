@@ -4,7 +4,7 @@
 
 **JBOSS EAP v.6.4**
 
-JBOSS configuration
+###configuration
 
   1. Download JBOSS EAP 6.4
   2. Create module folder for module JCR API: $JBOSS_HOME/modules/system/layers/base/javax/jcr/main/
@@ -89,4 +89,9 @@ JBOSS configuration
   7. Download jackrabbit-jca-2.10.1.rar from apache jackrabbit homesite into $JBOSS_HOME/standalone/deployments/
   8. Start JBOSS
 
-##links
+###links
+http://jackrabbit.apache.org/jcr/index.html
+http://jackrabbit.apache.org/jcr/articles.html
+http://wiki.apache.org/jackrabbit/FrontPage
+http://www.jboss.org/
+https://developer.jboss.org/wiki/JackrabbitDeploymentInAS6AndAS7
