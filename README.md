@@ -77,7 +77,7 @@ JBOSS configuration
         </profile>
     </server>
     ```
-    Important things here is: HomeDir and ConfigFile properties. Make sure that HomeDir is exists and JBOSS user has all needed rights. We will use shared Repository resource through JNDI name: java:/jca/app/repository
+    Important things here is: 1. global module javax.jcr, 2 turn off validation for jca, 3. resourse adapter configuration for JCR: HomeDir and ConfigFile properties. Make sure that HomeDir is exists and JBOSS user has all needed rights. We will use shared Repository resource through JNDI name: java:/jca/app/repository
     
   6. Add repository configuration
     
